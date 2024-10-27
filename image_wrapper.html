@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #fff; /* 可根据需要设置背景颜色 */
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <script>
+    function getParameterByName(name) {
+      var url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    window.onload = function() {
+      var imgUrl = getParameterByName('img_url');
+      if (imgUrl) {
+        document.getElementById('restaurant-image').src = imgUrl;
+      } else {
+        document.getElementById('message').innerText = "No image available.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <img id="restaurant-image" src="" alt="Restaurant Image">
+  <p id="message" style="text-align:center;"></p>
+</body>
+</html>
